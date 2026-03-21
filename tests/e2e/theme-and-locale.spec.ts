@@ -10,3 +10,11 @@ test('header exposes language and theme controls', async ({ page }) => {
   await expect(page.getByRole('button', { name: /language/i })).toBeVisible();
   await expect(page.getByRole('button', { name: /theme/i })).toBeVisible();
 });
+
+test('theme selection persists after reload', async ({ page }) => {
+  await page.goto('/en');
+  await page.getByRole('button', { name: /theme/i }).click();
+  await page.getByRole('menuitem', { name: /light/i }).click();
+  await page.reload();
+  await expect(page.locator('html')).toHaveClass(/light/);
+});
