@@ -33,7 +33,7 @@ export function LoginForm() {
       return;
     }
 
-    window.location.href = result.url ?? `/${locale}/app`;
+    window.location.href = `/${locale}/app`;
   }
 
   return (

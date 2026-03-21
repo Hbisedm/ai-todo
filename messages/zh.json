@@ -50,6 +50,66 @@
   },
   "dashboard": {
     "eyebrow": "你的任务看板",
-    "title": "聚焦下一个高价值任务。"
+    "title": "聚焦下一个高价值任务。",
+    "subtitle": "跟踪进度，让优先级始终清晰，并更顺畅地推进工作。",
+    "stats": {
+      "total": "总任务数",
+      "completed": "已完成",
+      "inProgress": "进行中",
+      "overdue": "已逾期"
+    },
+    "filters": {
+      "all": "全部",
+      "todo": "待办",
+      "inProgress": "进行中",
+      "done": "已完成",
+      "anyPriority": "任意优先级",
+      "high": "高优先级",
+      "medium": "中优先级",
+      "low": "低优先级"
+    }
+  },
+  "todos": {
+    "form": {
+      "eyebrow": "新任务",
+      "title": "添加真正重要的事情",
+      "fields": {
+        "title": "标题",
+        "description": "描述",
+        "priority": "优先级",
+        "dueDate": "截止日期"
+      },
+      "placeholders": {
+        "title": "完成作品集发布",
+        "description": "补充一些细节说明"
+      },
+      "priority": {
+        "low": "低",
+        "medium": "中",
+        "high": "高"
+      },
+      "submit": "创建任务"
+    },
+    "card": {
+      "noDescription": "暂无描述",
+      "noDueDate": "没有截止日期",
+      "due": "截止",
+      "advanceStatus": "推进状态",
+      "delete": "删除",
+      "status": {
+        "TODO": "待办",
+        "IN_PROGRESS": "进行中",
+        "DONE": "已完成"
+      },
+      "priority": {
+        "LOW": "低",
+        "MEDIUM": "中",
+        "HIGH": "高"
+      }
+    },
+    "empty": {
+      "title": "还没有任务",
+      "description": "先创建第一条任务，让看板真正运转起来。"
+    }
   }
 }

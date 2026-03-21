@@ -34,3 +34,12 @@ test('login errors render in chinese when locale is zh', async ({ page }) => {
   await page.getByRole('button', { name: /登录/i }).click();
   await expect(page.getByText(/请检查邮箱和密码/i)).toBeVisible();
 });
+
+test('signed-in user sees chinese dashboard labels', async ({ page }) => {
+  await page.goto('/zh/login');
+  await page.getByLabel(/邮箱/i).fill('demo@todoweb.dev');
+  await page.getByLabel(/密码/i).fill('password123');
+  await page.getByRole('button', { name: /登录/i }).click();
+  await expect(page).toHaveURL(/\/zh\/app/);
+  await expect(page.getByText(/总任务数/)).toBeVisible();
+});

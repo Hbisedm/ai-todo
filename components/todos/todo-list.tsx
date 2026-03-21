@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import { TodoCard } from '@/components/todos/todo-card';
 
 type Todo = {
@@ -10,11 +12,13 @@ type Todo = {
 };
 
 export function TodoList({ todos }: { todos: Todo[] }) {
+  const t = useTranslations('todos.empty');
+
   if (todos.length === 0) {
     return (
       <section className="empty-state">
-        <h2>No tasks yet</h2>
-        <p>Create your first task to bring this dashboard to life.</p>
+        <h2>{t('title')}</h2>
+        <p>{t('description')}</p>
       </section>
     );
   }

@@ -163,3 +163,201 @@ h1 {
   text-align: left;
   cursor: pointer;
 }
+
+.dashboard-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.dashboard-hero {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dashboard-hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.stat-card,
+.todo-form-card,
+.todo-card,
+.empty-state,
+.filter-panel {
+  border: 1px solid var(--card-border);
+  border-radius: 1.25rem;
+  background: var(--card);
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+}
+
+.stat-card {
+  padding: 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.stat-card span,
+.todo-card p,
+.todo-card span,
+.empty-state p,
+.todo-form label span {
+  color: var(--muted);
+}
+
+.stat-card strong {
+  font-size: 2rem;
+}
+
+.filter-panel {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filter-chip {
+  border-radius: 999px;
+  padding: 0.65rem 0.95rem;
+  border: 1px solid var(--card-border);
+  background: var(--ghost);
+}
+
+.filter-chip.active {
+  background: color-mix(in srgb, #3b82f6 18%, var(--ghost));
+  border-color: color-mix(in srgb, #60a5fa 40%, var(--card-border));
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.todo-form-card,
+.empty-state {
+  padding: 1.5rem;
+}
+
+.todo-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.todo-form label {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.todo-form input,
+.todo-form textarea,
+.todo-form select,
+.todo-form button,
+.todo-actions button {
+  width: 100%;
+  border-radius: 0.9rem;
+  border: 1px solid var(--card-border);
+  padding: 0.85rem 1rem;
+  font: inherit;
+}
+
+.todo-form input,
+.todo-form textarea,
+.todo-form select {
+  background: var(--card);
+  color: var(--foreground);
+}
+
+.todo-form button,
+.todo-actions button {
+  cursor: pointer;
+  background: var(--accent);
+  color: white;
+}
+
+.todo-form__row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.todo-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.todo-card {
+  padding: 1.25rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.todo-card h3 {
+  margin: 0 0 0.25rem;
+}
+
+.todo-card__top,
+.todo-card__bottom,
+.todo-meta,
+.todo-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.todo-meta,
+.todo-actions {
+  flex-wrap: wrap;
+}
+
+.badge {
+  border-radius: 999px;
+  background: color-mix(in srgb, #3b82f6 18%, transparent);
+  color: color-mix(in srgb, var(--foreground) 86%, #3b82f6);
+  padding: 0.35rem 0.75rem;
+}
+
+.badge-secondary {
+  background: color-mix(in srgb, #8b5cf6 18%, transparent);
+  color: color-mix(in srgb, var(--foreground) 86%, #8b5cf6);
+}
+
+.danger-button {
+  background: linear-gradient(135deg, #ef4444, #f97316);
+}
+
+.empty-state {
+  display: grid;
+  gap: 0.5rem;
+  place-items: start;
+}
+
+@media (max-width: 900px) {
+  .stats-grid,
+  .dashboard-grid,
+  .todo-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .todo-card__top,
+  .todo-card__bottom,
+  .filter-panel {
+    flex-direction: column;
+  }
+}
