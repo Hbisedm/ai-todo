@@ -10,7 +10,73 @@
   },
   "marketing": {
     "hero": {
-      "title": "Organize your work with clarity"
+      "eyebrow": "Portfolio-grade task management",
+      "title": "Organize your work with clarity",
+      "description": "A polished full-stack TODO experience with real authentication, responsive cards, and a dashboard that feels like a complete product.",
+      "primaryCta": "Create your workspace",
+      "secondaryCta": "See the sign-in flow",
+      "previewLabel": "Task dashboard preview",
+      "cards": {
+        "launch": {
+          "title": "Launch portfolio refresh",
+          "meta": "High priority · Due Friday"
+        },
+        "review": {
+          "title": "Review auth flow polish",
+          "meta": "In progress · Real authentication"
+        },
+        "ship": {
+          "title": "Ship dashboard cards",
+          "meta": "Done · Updated 1h ago"
+        }
+      }
+    },
+    "features": {
+      "auth": {
+        "title": "Real authentication",
+        "description": "Credential sign-in, protected routes, and user-scoped task data."
+      },
+      "dashboard": {
+        "title": "Card-first dashboard",
+        "description": "A polished layout with stats, focus areas, and clean task grouping."
+      },
+      "architecture": {
+        "title": "Portfolio-ready architecture",
+        "description": "Next.js, Prisma, and a structured domain layer you can confidently explain."
+      }
+    },
+    "preview": {
+      "eyebrow": "Task dashboard preview",
+      "title": "Built to feel like a real product, not a mockup.",
+      "description": "The app area combines overview metrics, focused task cards, and quick status updates so the product reads well in both demos and screenshots.",
+      "stats": {
+        "total": {
+          "value": "24",
+          "label": "Total tasks"
+        },
+        "completed": {
+          "value": "8",
+          "label": "Completed"
+        },
+        "overdue": {
+          "value": "3",
+          "label": "Overdue"
+        }
+      },
+      "lines": {
+        "launch": {
+          "title": "Prepare launch notes",
+          "meta": "Today"
+        },
+        "register": {
+          "title": "Polish register page",
+          "meta": "Tomorrow"
+        },
+        "emptyState": {
+          "title": "Refine empty state",
+          "meta": "Done"
+        }
+      }
     }
   },
   "auth": {

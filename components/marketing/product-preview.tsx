@@ -1,23 +1,28 @@
+import { useTranslations } from 'next-intl';
+
+const statKeys = ['total', 'completed', 'overdue'] as const;
+const lineKeys = ['launch', 'register', 'emptyState'] as const;
+
 export function ProductPreview() {
+  const t = useTranslations('marketing.preview');
+
   return (
     <section className="product-preview">
       <div>
-        <p className="eyebrow">Task dashboard preview</p>
-        <h2>Built to feel like a real product, not a mockup.</h2>
-        <p>
-          The app area combines overview metrics, focused task cards, and quick status updates so the product reads well in both demos and screenshots.
-        </p>
+        <p className="eyebrow">{t('eyebrow')}</p>
+        <h2>{t('title')}</h2>
+        <p>{t('description')}</p>
       </div>
       <div className="preview-panel">
         <div className="preview-panel__stats">
-          <div><strong>24</strong><span>Total tasks</span></div>
-          <div><strong>8</strong><span>Completed</span></div>
-          <div><strong>3</strong><span>Overdue</span></div>
+          {statKeys.map((statKey) => (
+            <div key={statKey}><strong>{t(`stats.${statKey}.value`)}</strong><span>{t(`stats.${statKey}.label`)}</span></div>
+          ))}
         </div>
         <div className="preview-panel__list">
-          <div className="preview-line"><strong>Prepare launch notes</strong><span>Today</span></div>
-          <div className="preview-line"><strong>Polish register page</strong><span>Tomorrow</span></div>
-          <div className="preview-line"><strong>Refine empty state</strong><span>Done</span></div>
+          {lineKeys.map((lineKey) => (
+            <div className="preview-line" key={lineKey}><strong>{t(`lines.${lineKey}.title`)}</strong><span>{t(`lines.${lineKey}.meta`)}</span></div>
+          ))}
         </div>
       </div>
     </section>

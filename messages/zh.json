@@ -10,7 +10,73 @@
   },
   "marketing": {
     "hero": {
-      "title": "清晰地组织你的工作"
+      "eyebrow": "作品集级任务管理体验",
+      "title": "清晰地组织你的工作",
+      "description": "一个精致的全栈 TODO 体验，包含真实认证、响应式卡片和真正像产品的任务看板。",
+      "primaryCta": "创建你的工作区",
+      "secondaryCta": "查看登录流程",
+      "previewLabel": "任务看板预览",
+      "cards": {
+        "launch": {
+          "title": "启动作品集焕新计划",
+          "meta": "高优先级 · 周五截止"
+        },
+        "review": {
+          "title": "检查认证流程打磨效果",
+          "meta": "进行中 · 真实身份认证"
+        },
+        "ship": {
+          "title": "交付看板卡片界面",
+          "meta": "已完成 · 1 小时前更新"
+        }
+      }
+    },
+    "features": {
+      "auth": {
+        "title": "真实认证流程",
+        "description": "支持账号密码登录、受保护路由和按用户隔离的任务数据。"
+      },
+      "dashboard": {
+        "title": "卡片式看板",
+        "description": "精致的布局将统计、关注重点与任务分组自然组织在一起。"
+      },
+      "architecture": {
+        "title": "适合作品集展示的架构",
+        "description": "基于 Next.js、Prisma 与清晰的领域分层，方便演示与讲解。"
+      }
+    },
+    "preview": {
+      "eyebrow": "任务看板预览",
+      "title": "它更像真实产品，而不是静态样稿。",
+      "description": "应用区结合了概览指标、聚焦任务卡片和快捷状态更新，让它在演示和截图中都足够完整。",
+      "stats": {
+        "total": {
+          "value": "24",
+          "label": "总任务数"
+        },
+        "completed": {
+          "value": "8",
+          "label": "已完成"
+        },
+        "overdue": {
+          "value": "3",
+          "label": "已逾期"
+        }
+      },
+      "lines": {
+        "launch": {
+          "title": "准备上线说明",
+          "meta": "今天"
+        },
+        "register": {
+          "title": "打磨注册页面",
+          "meta": "明天"
+        },
+        "emptyState": {
+          "title": "优化空状态",
+          "meta": "已完成"
+        }
+      }
     }
   },
   "auth": {

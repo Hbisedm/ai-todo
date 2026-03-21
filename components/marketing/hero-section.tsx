@@ -1,32 +1,34 @@
 import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
 
 export function HeroSection() {
+  const locale = useLocale();
+  const t = useTranslations('marketing.hero');
+
   return (
     <section className="hero-section">
       <div className="hero-copy">
-        <span className="eyebrow">Portfolio-grade task management</span>
-        <h1>Organize your work with clarity</h1>
-        <p>
-          A polished full-stack TODO experience with real authentication, responsive cards, and a dashboard that feels like a complete product.
-        </p>
+        <span className="eyebrow">{t('eyebrow')}</span>
+        <h1>{t('title')}</h1>
+        <p>{t('description')}</p>
         <div className="hero-actions">
-          <Link className="cta-link" href="/register">Create your workspace</Link>
-          <Link className="ghost-link" href="/login">See the sign-in flow</Link>
+          <Link className="cta-link" href={`/${locale}/register`}>{t('primaryCta')}</Link>
+          <Link className="ghost-link" href={`/${locale}/login`}>{t('secondaryCta')}</Link>
         </div>
       </div>
       <div className="hero-card">
-        <p className="muted">Task dashboard preview</p>
+        <p className="muted">{t('previewLabel')}</p>
         <div className="preview-card accent">
-          <strong>Launch portfolio refresh</strong>
-          <span>High priority · Due Friday</span>
+          <strong>{t('cards.launch.title')}</strong>
+          <span>{t('cards.launch.meta')}</span>
         </div>
         <div className="preview-card">
-          <strong>Review auth flow polish</strong>
-          <span>In progress · Real authentication</span>
+          <strong>{t('cards.review.title')}</strong>
+          <span>{t('cards.review.meta')}</span>
         </div>
         <div className="preview-card soft">
-          <strong>Ship dashboard cards</strong>
-          <span>Done · Updated 1h ago</span>
+          <strong>{t('cards.ship.title')}</strong>
+          <span>{t('cards.ship.meta')}</span>
         </div>
       </div>
     </section>

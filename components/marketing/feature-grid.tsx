@@ -1,25 +1,16 @@
-const features = [
-  {
-    title: 'Real authentication',
-    description: 'Credential sign-in, protected routes, and user-scoped task data.'
-  },
-  {
-    title: 'Card-first dashboard',
-    description: 'A polished layout with stats, focus areas, and clean task grouping.'
-  },
-  {
-    title: 'Portfolio-ready architecture',
-    description: 'Next.js, Prisma, and a structured domain layer you can confidently explain.'
-  }
-];
+import { useTranslations } from 'next-intl';
+
+const featureKeys = ['auth', 'dashboard', 'architecture'] as const;
 
 export function FeatureGrid() {
+  const t = useTranslations('marketing.features');
+
   return (
     <section className="feature-grid">
-      {features.map((feature) => (
-        <article className="feature-card" key={feature.title}>
-          <h2>{feature.title}</h2>
-          <p>{feature.description}</p>
+      {featureKeys.map((featureKey) => (
+        <article className="feature-card" key={featureKey}>
+          <h2>{t(`${featureKey}.title`)}</h2>
+          <p>{t(`${featureKey}.description`)}</p>
         </article>
       ))}
     </section>
