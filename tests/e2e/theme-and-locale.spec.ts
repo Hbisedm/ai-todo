@@ -43,3 +43,13 @@ test('signed-in user sees chinese dashboard labels', async ({ page }) => {
   await expect(page).toHaveURL(/\/zh\/app/);
   await expect(page.getByText(/总任务数/)).toBeVisible();
 });
+
+test('todo action errors render in chinese on the dashboard', async ({ page }) => {
+  await page.goto('/zh/login');
+  await page.getByLabel(/邮箱/i).fill('demo@todoweb.dev');
+  await page.getByLabel(/密码/i).fill('password123');
+  await page.getByRole('button', { name: /登录/i }).click();
+  await expect(page).toHaveURL(/\/zh\/app/);
+  await page.goto('/zh/app?todoError=TODO_NOT_FOUND');
+  await expect(page.getByText(/未找到该任务/i)).toBeVisible();
+});

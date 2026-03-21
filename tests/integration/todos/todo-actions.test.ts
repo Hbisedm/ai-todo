@@ -2,7 +2,8 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { createTodoRecord } from '@/features/todos/actions/create-todo';
 import { deleteTodoRecord } from '@/features/todos/actions/delete-todo';
-import { resolveTodoPath, updateTodoRecord } from '@/features/todos/actions/update-todo';
+import { resolveTodoPath, withTodoError, withoutTodoError } from '@/features/todos/actions/shared';
+import { updateTodoRecord } from '@/features/todos/actions/update-todo';
 
 describe('todo action helpers', () => {
   it('creates a todo for the provided user id', async () => {
@@ -25,6 +26,11 @@ describe('todo action helpers', () => {
   it('returns a locale-aware dashboard path', () => {
     expect(resolveTodoPath('zh')).toBe('/zh/app');
     expect(resolveTodoPath('en', '/en/app?status=done')).toBe('/en/app?status=done');
+  });
+
+  it('adds and removes todo error query params', () => {
+    expect(withTodoError('/zh/app?status=done', 'TODO_NOT_FOUND')).toBe('/zh/app?status=done&todoError=TODO_NOT_FOUND');
+    expect(withoutTodoError('/zh/app?status=done&todoError=TODO_NOT_FOUND')).toBe('/zh/app?status=done');
   });
 
   it('maps missing todos to a stable error code when updating', async () => {

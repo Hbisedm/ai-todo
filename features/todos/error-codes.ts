@@ -6,3 +6,5 @@ export const TODO_ERROR_CODES = {
   UPDATE_FAILED: 'TODO_UPDATE_FAILED',
   DELETE_FAILED: 'TODO_DELETE_FAILED'
 } as const;
+
+export const TODO_ERROR_CODE_VALUES = Object.values(TODO_ERROR_CODES);

@@ -110,6 +110,14 @@
     "empty": {
       "title": "还没有任务",
       "description": "先创建第一条任务，让看板真正运转起来。"
+    },
+    "errors": {
+      "TODO_UNAUTHORIZED": "请重新登录后继续。",
+      "TODO_VALIDATION_FAILED": "请检查任务信息后再试。",
+      "TODO_NOT_FOUND": "未找到该任务。",
+      "TODO_CREATE_FAILED": "暂时无法创建任务。",
+      "TODO_UPDATE_FAILED": "暂时无法更新任务。",
+      "TODO_DELETE_FAILED": "暂时无法删除任务。"
     }
   }
 }

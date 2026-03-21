@@ -348,6 +348,16 @@ h1 {
   place-items: start;
 }
 
+.page-error-banner {
+  margin: 0;
+  border: 1px solid color-mix(in srgb, #ef4444 35%, var(--card-border));
+  border-radius: 1rem;
+  background: color-mix(in srgb, #ef4444 12%, var(--card));
+  color: var(--foreground);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+}
+
 @media (max-width: 900px) {
   .stats-grid,
   .dashboard-grid,

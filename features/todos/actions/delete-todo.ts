@@ -2,9 +2,10 @@
 
 import { getServerSession } from 'next-auth';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 import { authOptions } from '@/auth';
-import { normalizeTodoError, resolveTodoPath } from '@/features/todos/actions/create-todo';
+import { normalizeTodoError, resolveTodoPath, withTodoError, withoutTodoError } from '@/features/todos/actions/shared';
 import { TODO_ERROR_CODES } from '@/features/todos/error-codes';
 import { deleteTodoForUser } from '@/features/todos/repository';
 import { defaultLocale } from '@/i18n/routing';
@@ -23,11 +24,20 @@ export async function deleteTodoRecord(deleteTodo: DeleteTodoFn, userId: string,
 export async function deleteTodoAction(formData: FormData) {
   const session = await getServerSession(authOptions);
   const userId = (session?.user as { id?: string } | undefined)?.id;
+  const path = resolveTodoPath(String(formData.get('locale') ?? defaultLocale), String(formData.get('returnTo') ?? ''));
 
   if (!userId) {
     throw new AppError(TODO_ERROR_CODES.UNAUTHORIZED);
   }
 
-  await deleteTodoRecord(deleteTodoForUser, userId, String(formData.get('id') ?? ''));
-  revalidatePath(resolveTodoPath(String(formData.get('locale') ?? defaultLocale), String(formData.get('returnTo') ?? '')));
+  try {
+    await deleteTodoRecord(deleteTodoForUser, userId, String(formData.get('id') ?? ''));
+  } catch (error) {
+    const todoError = normalizeTodoError(error, TODO_ERROR_CODES.DELETE_FAILED);
+    redirect(withTodoError(path, todoError.code));
+  }
+
+  const nextPath = withoutTodoError(path);
+  revalidatePath(nextPath);
+  redirect(nextPath);
 }

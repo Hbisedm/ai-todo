@@ -110,6 +110,14 @@
     "empty": {
       "title": "No tasks yet",
       "description": "Create your first task to bring this dashboard to life."
+    },
+    "errors": {
+      "TODO_UNAUTHORIZED": "Please log in again to continue.",
+      "TODO_VALIDATION_FAILED": "Please review the task details and try again.",
+      "TODO_NOT_FOUND": "That task could not be found.",
+      "TODO_CREATE_FAILED": "Could not create the task right now.",
+      "TODO_UPDATE_FAILED": "Could not update the task right now.",
+      "TODO_DELETE_FAILED": "Could not delete the task right now."
     }
   }
 }

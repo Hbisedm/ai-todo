@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { deleteTodoAction } from '@/features/todos/actions/delete-todo';
 import { updateTodoAction } from '@/features/todos/actions/update-todo';
+import type { AppLocale } from '@/i18n/routing';
 
 type Todo = {
   id: string;
@@ -18,7 +19,7 @@ const nextStatus: Record<string, 'todo' | 'in_progress' | 'done'> = {
   DONE: 'todo'
 };
 
-export function TodoCard({ todo }: { todo: Todo }) {
+export function TodoCard({ todo, locale, returnTo }: { todo: Todo; locale: AppLocale; returnTo: string }) {
   const t = useTranslations('todos.card');
   const dueDate = todo.dueDate ? new Date(todo.dueDate) : null;
 
@@ -40,10 +41,14 @@ export function TodoCard({ todo }: { todo: Todo }) {
           <form action={updateTodoAction}>
             <input name="id" type="hidden" value={todo.id} />
             <input name="status" type="hidden" value={nextStatus[todo.status] ?? 'todo'} />
+            <input name="locale" type="hidden" value={locale} />
+            <input name="returnTo" type="hidden" value={returnTo} />
             <button type="submit">{t('advanceStatus')}</button>
           </form>
           <form action={deleteTodoAction}>
             <input name="id" type="hidden" value={todo.id} />
+            <input name="locale" type="hidden" value={locale} />
+            <input name="returnTo" type="hidden" value={returnTo} />
             <button className="danger-button" type="submit">{t('delete')}</button>
           </form>
         </div>

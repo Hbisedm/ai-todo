@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 import { TodoCard } from '@/components/todos/todo-card';
+import type { AppLocale } from '@/i18n/routing';
 
 type Todo = {
   id: string;
@@ -11,7 +12,7 @@ type Todo = {
   dueDate: Date | string | null;
 };
 
-export function TodoList({ todos }: { todos: Todo[] }) {
+export function TodoList({ todos, locale, returnTo }: { todos: Todo[]; locale: AppLocale; returnTo: string }) {
   const t = useTranslations('todos.empty');
 
   if (todos.length === 0) {
@@ -26,7 +27,7 @@ export function TodoList({ todos }: { todos: Todo[] }) {
   return (
     <section className="todo-list">
       {todos.map((todo) => (
-        <TodoCard key={todo.id} todo={todo} />
+        <TodoCard key={todo.id} locale={locale} returnTo={returnTo} todo={todo} />
       ))}
     </section>
   );

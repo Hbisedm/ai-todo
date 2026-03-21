@@ -1,8 +1,9 @@
 import { useTranslations } from 'next-intl';
 
 import { createTodoAction } from '@/features/todos/actions/create-todo';
+import type { AppLocale } from '@/i18n/routing';
 
-export function TodoFormDialog() {
+export function TodoFormDialog({ locale, returnTo }: { locale: AppLocale; returnTo: string }) {
   const t = useTranslations('todos.form');
 
   return (
@@ -12,6 +13,8 @@ export function TodoFormDialog() {
         <h2>{t('title')}</h2>
       </div>
       <form action={createTodoAction} className="todo-form">
+        <input name="locale" type="hidden" value={locale} />
+        <input name="returnTo" type="hidden" value={returnTo} />
         <label>
           <span>{t('fields.title')}</span>
           <input name="title" placeholder={t('placeholders.title')} required />
