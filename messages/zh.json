@@ -1,10 +1,22 @@
 {
   "common": {
-    "appName": "TODO Web"
+    "appName": "TODO Web",
+    "navigation": {
+      "login": "登录",
+      "getStarted": "开始使用"
+    }
   },
   "marketing": {
     "hero": {
       "title": "清晰地组织你的工作"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "登录"
+    },
+    "register": {
+      "title": "创建账号"
     }
   }
 }

@@ -1,10 +1,22 @@
 {
   "common": {
-    "appName": "TODO Web"
+    "appName": "TODO Web",
+    "navigation": {
+      "login": "Log in",
+      "getStarted": "Get started"
+    }
   },
   "marketing": {
     "hero": {
       "title": "Organize your work with clarity"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Log in"
+    },
+    "register": {
+      "title": "Create your account"
     }
   }
 }

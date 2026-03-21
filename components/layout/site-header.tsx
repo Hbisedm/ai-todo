@@ -1,15 +1,27 @@
 import Link from 'next/link';
 
-export function SiteHeader() {
+import type { AppLocale } from '@/i18n/routing';
+
+export function SiteHeader({
+  locale,
+  appName,
+  loginLabel,
+  getStartedLabel
+}: {
+  locale: AppLocale;
+  appName: string;
+  loginLabel: string;
+  getStartedLabel: string;
+}) {
   return (
     <header className="site-header">
-      <Link className="brand" href="/">
-        TODO Web
+      <Link className="brand" href={`/${locale}`}>
+        {appName}
       </Link>
-      <nav className="site-nav" aria-label="Primary">
-        <Link href="/login">Log in</Link>
-        <Link className="cta-link" href="/register">
-          Get started
+      <nav aria-label="Primary" className="site-nav">
+        <Link href={`/${locale}/login`}>{loginLabel}</Link>
+        <Link className="cta-link" href={`/${locale}/register`}>
+          {getStartedLabel}
         </Link>
       </nav>
     </header>
