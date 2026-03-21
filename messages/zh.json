@@ -20,5 +20,9 @@
     "register": {
       "title": "创建账号"
     }
+  },
+  "dashboard": {
+    "eyebrow": "你的任务看板",
+    "title": "聚焦下一个高价值任务。"
   }
 }

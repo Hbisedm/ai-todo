@@ -20,5 +20,9 @@
     "register": {
       "title": "Create your account"
     }
+  },
+  "dashboard": {
+    "eyebrow": "Your TODO dashboard",
+    "title": "Focus on the next high-impact task."
   }
 }

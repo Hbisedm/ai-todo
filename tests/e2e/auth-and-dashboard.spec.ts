@@ -6,8 +6,8 @@ test('english landing page shows translated marketing copy', async ({ page }) =>
   await expect(page.getByRole('link', { name: /get started/i })).toBeVisible();
 });
 
-test('redirects unauthenticated users away from /app', async ({ page }) => {
-  await page.goto('/app');
-  await expect(page).toHaveURL(/\/login/);
+test('redirects unauthenticated users away from locale dashboard', async ({ page }) => {
+  await page.goto('/en/app');
+  await expect(page).toHaveURL(/\/en\/login/);
   await expect(page.getByRole('heading', { name: /log in/i })).toBeVisible();
 });
