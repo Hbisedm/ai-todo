@@ -1,26 +1,13 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import { getToken } from 'next-auth/jwt';
+import createMiddleware from 'next-intl/middleware';
 
-export async function middleware(request: NextRequest) {
-  if (!request.nextUrl.pathname.startsWith('/app')) {
-    return NextResponse.next();
-  }
+import { defaultLocale, locales } from '@/i18n/routing';
 
-  const token = await getToken({
-    req: request,
-    secret: process.env.AUTH_SECRET
-  });
-
-  if (token) {
-    return NextResponse.next();
-  }
-
-  const loginUrl = new URL('/login', request.url);
-  loginUrl.searchParams.set('callbackUrl', request.nextUrl.pathname);
-  return NextResponse.redirect(loginUrl);
-}
+export default createMiddleware({
+  locales,
+  defaultLocale,
+  localePrefix: 'always'
+});
 
 export const config = {
-  matcher: ['/app/:path*']
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };

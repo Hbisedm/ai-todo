@@ -1,0 +1,10 @@
+{
+  "common": {
+    "appName": "TODO Web"
+  },
+  "marketing": {
+    "hero": {
+      "title": "Organize your work with clarity"
+    }
+  }
+}
