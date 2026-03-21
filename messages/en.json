@@ -3,7 +3,9 @@
     "appName": "TODO Web",
     "navigation": {
       "login": "Log in",
-      "getStarted": "Get started"
+      "getStarted": "Get started",
+      "language": "Language",
+      "theme": "Theme"
     }
   },
   "marketing": {

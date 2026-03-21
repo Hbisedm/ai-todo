@@ -17,8 +17,10 @@ export default async function MarketingPage({
       <SiteHeader
         appName={common('appName')}
         getStartedLabel={common('navigation.getStarted')}
+        languageLabel={common('navigation.language')}
         locale={locale}
         loginLabel={common('navigation.login')}
+        themeLabel={common('navigation.theme')}
       />
       <main>
         <h1>{hero('title')}</h1>

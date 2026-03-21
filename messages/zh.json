@@ -3,7 +3,9 @@
     "appName": "TODO Web",
     "navigation": {
       "login": "登录",
-      "getStarted": "开始使用"
+      "getStarted": "开始使用",
+      "language": "语言",
+      "theme": "主题"
     }
   },
   "marketing": {
