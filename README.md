@@ -1,37 +1,50 @@
 # TODO Web
 
-Portfolio-grade full-stack TODO app built with `Next.js`, `Prisma`, `PostgreSQL`, and `Auth.js`.
+Portfolio-grade full-stack TODO app built with `Next.js`, `Prisma`, `PostgreSQL`, `Auth.js`, `next-intl`, and `next-themes`.
 
 ## Features
 
-- Marketing landing page with product-style presentation
+- Locale-prefixed routes with `en` / `zh` support
+- Light / dark / system theme switching with persistence
+- Marketing landing page, authentication, and dashboard localized end to end
 - Email/password authentication with protected app routes
-- User-scoped TODO CRUD foundations
-- Card-based dashboard UI with stats, filters, and quick actions
+- User-scoped TODO CRUD with translated mutation feedback
 - Prisma schema, migration SQL, and seed workflow
 
 ## Environment
 
-Copy `.env.example` to `.env.local` and fill in the values:
+Copy `.env.example` to `.env` and fill in the values:
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
 Required variables:
 
 - `DATABASE_URL`
 - `AUTH_SECRET`
+- `NEXTAUTH_URL`
 
 ## Local setup
 
 ```bash
-pnpm install
-pnpm db:generate
-pnpm db:migrate
-pnpm db:seed
-pnpm dev
+corepack pnpm install
+corepack pnpm db:generate
+corepack pnpm db:migrate
+corepack pnpm db:seed
+corepack pnpm dev
 ```
+
+## Locale routes
+
+- `/en`
+- `/zh`
+
+## Theme modes
+
+- `system`
+- `light`
+- `dark`
 
 ## Demo account
 
@@ -43,13 +56,13 @@ After seeding:
 ## Tests
 
 ```bash
-pnpm test
-pnpm test:e2e
-pnpm build
+corepack pnpm test
+corepack pnpm test:e2e
+corepack pnpm build
 ```
 
 ## Notes
 
-- `pnpm test:e2e` starts the local Next.js server automatically through Playwright.
+- `corepack pnpm test:e2e` starts the local Next.js server automatically through Playwright.
 - The checked-in SQL migration lives at `prisma/migrations/0001_init/migration.sql`.
 - For production, use a real PostgreSQL instance and a long random `AUTH_SECRET`.
