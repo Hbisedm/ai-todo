@@ -1,7 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
-import { createTodoRecord } from '@/features/todos/actions/create-todo';
 
-describe('createTodoRecord', () => {
+import { createTodoRecord } from '@/features/todos/actions/create-todo';
+import { deleteTodoRecord } from '@/features/todos/actions/delete-todo';
+import { resolveTodoPath, updateTodoRecord } from '@/features/todos/actions/update-todo';
+
+describe('todo action helpers', () => {
   it('creates a todo for the provided user id', async () => {
     const createTodo = vi.fn().mockResolvedValue({ id: 'todo-1' });
 
@@ -17,5 +20,29 @@ describe('createTodoRecord', () => {
         priority: 'high'
       })
     );
+  });
+
+  it('returns a locale-aware dashboard path', () => {
+    expect(resolveTodoPath('zh')).toBe('/zh/app');
+    expect(resolveTodoPath('en', '/en/app?status=done')).toBe('/en/app?status=done');
+  });
+
+  it('maps missing todos to a stable error code when updating', async () => {
+    const updateTodo = vi.fn().mockRejectedValue(new Error('Todo not found'));
+
+    await expect(
+      updateTodoRecord(updateTodo, 'user-1', {
+        id: 'todo-1',
+        status: 'done'
+      })
+    ).rejects.toMatchObject({ code: 'TODO_NOT_FOUND' });
+  });
+
+  it('maps unexpected delete failures to a stable error code', async () => {
+    const deleteTodo = vi.fn().mockRejectedValue(new Error('boom'));
+
+    await expect(deleteTodoRecord(deleteTodo, 'user-1', 'todo-1')).rejects.toMatchObject({
+      code: 'TODO_DELETE_FAILED'
+    });
   });
 });
