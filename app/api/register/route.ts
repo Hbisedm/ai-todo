@@ -1,18 +1,27 @@
 import { NextResponse } from 'next/server';
 
-import { db } from '@/lib/db';
 import { registerUser } from '@/features/auth/actions/register';
+import { db } from '@/lib/db';
+import { isAppError } from '@/lib/errors';
 
 export async function POST(request: Request) {
   const body = await request.json();
 
-  await registerUser(
-    (input) =>
-      db.user.create({
-        data: input
-      }),
-    body
-  );
+  try {
+    await registerUser(
+      (input) =>
+        db.user.create({
+          data: input
+        }),
+      body
+    );
 
-  return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    if (isAppError(error)) {
+      return NextResponse.json({ ok: false, code: error.code }, { status: 400 });
+    }
+
+    return NextResponse.json({ ok: false, code: 'AUTH_REGISTRATION_FAILED' }, { status: 500 });
+  }
 }

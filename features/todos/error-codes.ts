@@ -1,0 +1,4 @@
+export const TODO_ERROR_CODES = {
+  UNAUTHORIZED: 'TODO_UNAUTHORIZED',
+  NOT_FOUND: 'TODO_NOT_FOUND'
+} as const;

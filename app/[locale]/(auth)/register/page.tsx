@@ -1,13 +1,9 @@
-import { getTranslations } from 'next-intl/server';
+import { RegisterForm } from '@/components/auth/register-form';
 
-export default async function RegisterPage() {
-  const t = await getTranslations('auth.register');
-
+export default function RegisterPage() {
   return (
     <main className="auth-page">
-      <section className="auth-card">
-        <h1>{t('title')}</h1>
-      </section>
+      <RegisterForm />
     </main>
   );
 }

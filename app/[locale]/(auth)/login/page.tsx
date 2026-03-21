@@ -1,13 +1,9 @@
-import { getTranslations } from 'next-intl/server';
+import { LoginForm } from '@/components/auth/login-form';
 
-export default async function LoginPage() {
-  const t = await getTranslations('auth.login');
-
+export default function LoginPage() {
   return (
     <main className="auth-page">
-      <section className="auth-card">
-        <h1>{t('title')}</h1>
-      </section>
+      <LoginForm />
     </main>
   );
 }

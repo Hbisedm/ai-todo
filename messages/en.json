@@ -15,10 +15,37 @@
   },
   "auth": {
     "login": {
-      "title": "Log in"
+      "title": "Log in",
+      "subtitle": "Welcome back. Pick up where you left off.",
+      "fields": {
+        "email": "Email",
+        "password": "Password"
+      },
+      "actions": {
+        "submit": "Log in",
+        "pending": "Signing in..."
+      },
+      "errors": {
+        "invalidCredentials": "Please check your email and password."
+      }
     },
     "register": {
-      "title": "Create your account"
+      "title": "Create your account",
+      "subtitle": "Start planning in a polished personal workspace.",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm password"
+      },
+      "actions": {
+        "submit": "Get started",
+        "pending": "Creating account..."
+      },
+      "errors": {
+        "emailTaken": "This email is already registered.",
+        "generic": "Could not create your account. Please try again."
+      }
     }
   },
   "dashboard": {

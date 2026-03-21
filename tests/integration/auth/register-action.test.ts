@@ -19,4 +19,17 @@ describe('registerUser', () => {
       })
     );
   });
+
+  it('returns a stable duplicate-email error code', async () => {
+    const createUser = vi.fn().mockRejectedValue({ code: 'P2002' });
+
+    await expect(
+      registerUser(createUser, {
+        name: 'Sam',
+        email: 'sam@example.com',
+        password: 'password123',
+        confirmPassword: 'password123'
+      })
+    ).rejects.toMatchObject({ code: 'AUTH_EMAIL_TAKEN' });
+  });
 });

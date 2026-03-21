@@ -26,3 +26,11 @@ test('language switch changes locale and marketing copy', async ({ page }) => {
   await expect(page).toHaveURL(/\/zh$/);
   await expect(page.getByRole('heading', { name: /清晰地组织你的工作/i })).toBeVisible();
 });
+
+test('login errors render in chinese when locale is zh', async ({ page }) => {
+  await page.goto('/zh/login');
+  await page.getByLabel(/邮箱/i).fill('demo@todoweb.dev');
+  await page.getByLabel(/密码/i).fill('wrong-password');
+  await page.getByRole('button', { name: /登录/i }).click();
+  await expect(page.getByText(/请检查邮箱和密码/i)).toBeVisible();
+});

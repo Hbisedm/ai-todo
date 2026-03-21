@@ -15,10 +15,37 @@
   },
   "auth": {
     "login": {
-      "title": "登录"
+      "title": "登录",
+      "subtitle": "欢迎回来，继续你的任务规划。",
+      "fields": {
+        "email": "邮箱",
+        "password": "密码"
+      },
+      "actions": {
+        "submit": "登录",
+        "pending": "登录中..."
+      },
+      "errors": {
+        "invalidCredentials": "请检查邮箱和密码。"
+      }
     },
     "register": {
-      "title": "创建账号"
+      "title": "创建账号",
+      "subtitle": "开始使用更精致的个人任务空间。",
+      "fields": {
+        "name": "姓名",
+        "email": "邮箱",
+        "password": "密码",
+        "confirmPassword": "确认密码"
+      },
+      "actions": {
+        "submit": "开始使用",
+        "pending": "创建中..."
+      },
+      "errors": {
+        "emailTaken": "该邮箱已被注册。",
+        "generic": "创建账号失败，请稍后重试。"
+      }
     }
   },
   "dashboard": {
