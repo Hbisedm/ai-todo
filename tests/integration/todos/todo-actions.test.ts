@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { createTodoRecord } from '@/features/todos/actions/create-todo';
 import { deleteTodoRecord } from '@/features/todos/actions/delete-todo';
 import { resolveTodoPath, withTodoError, withoutTodoError } from '@/features/todos/actions/shared';
+import { buildUpdateTodoInput } from '@/features/todos/actions/update-todo-input';
 import { updateTodoRecord } from '@/features/todos/actions/update-todo';
 
 describe('todo action helpers', () => {
@@ -31,6 +32,21 @@ describe('todo action helpers', () => {
   it('adds and removes todo error query params', () => {
     expect(withTodoError('/zh/app?status=done', 'TODO_NOT_FOUND')).toBe('/zh/app?status=done&todoError=TODO_NOT_FOUND');
     expect(withoutTodoError('/zh/app?status=done&todoError=TODO_NOT_FOUND')).toBe('/zh/app?status=done');
+  });
+
+  it('keeps omitted fields undefined when advancing status', () => {
+    const formData = new FormData();
+    formData.set('id', 'todo-1');
+    formData.set('status', 'done');
+
+    expect(buildUpdateTodoInput(formData)).toEqual({
+      id: 'todo-1',
+      status: 'done',
+      title: undefined,
+      description: undefined,
+      priority: undefined,
+      dueDate: undefined
+    });
   });
 
   it('maps missing todos to a stable error code when updating', async () => {
