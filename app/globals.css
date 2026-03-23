@@ -446,14 +446,24 @@ h2 {
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 340px minmax(0, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: minmax(400px, 420px) minmax(0, 1fr);
+  gap: 1.5rem;
   align-items: start;
 }
 
 .todo-form-card,
 .empty-state {
   padding: 1.5rem;
+}
+
+.todo-form-card {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.todo-form-card h2 {
+  font-size: clamp(2rem, 2.8vw, 2.6rem);
+  line-height: 1.08;
 }
 
 .todo-form {
