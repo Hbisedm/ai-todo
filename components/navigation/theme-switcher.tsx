@@ -1,17 +1,30 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 
 export function ThemeSwitcher({ label }: { label: string }) {
   const { resolvedTheme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const options = [
     { label: 'System', value: 'system' },
     { label: 'Light', value: 'light' },
     { label: 'Dark', value: 'dark' }
   ] as const;
+
+  const currentLabel = mounted
+    ? resolvedTheme === 'light'
+      ? 'Light'
+      : resolvedTheme === 'dark'
+        ? 'Dark'
+        : 'System'
+    : label;
 
   return (
     <div className="switcher-menu">
@@ -22,7 +35,7 @@ export function ThemeSwitcher({ label }: { label: string }) {
         onClick={() => setOpen((value) => !value)}
         type="button"
       >
-        {resolvedTheme === 'light' ? 'Light' : resolvedTheme === 'dark' ? 'Dark' : 'System'}
+        {currentLabel}
       </button>
       {open ? (
         <div className="menu-popover" role="menu">

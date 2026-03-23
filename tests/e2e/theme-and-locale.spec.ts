@@ -19,6 +19,20 @@ test('theme selection persists after reload', async ({ page }) => {
   await expect(page.locator('html')).toHaveClass(/light/);
 });
 
+test('theme switcher does not trigger hydration runtime errors', async ({ page }) => {
+  const pageErrors: string[] = [];
+  page.on('pageerror', (error) => pageErrors.push(error.message));
+
+  await page.goto('/en');
+  await page.getByRole('button', { name: /theme/i }).click();
+  await page.getByRole('menuitem', { name: /light/i }).click();
+  await page.reload();
+
+  await expect(page.getByRole('button', { name: /theme/i })).toHaveText(/light/i);
+  expect(pageErrors).not.toContainEqual(expect.stringMatching(/hydration|server-rendered html/i));
+  await expect(page.getByText(/Unhandled Runtime Error/i)).toHaveCount(0);
+});
+
 test('language switch changes locale and marketing copy', async ({ page }) => {
   await page.goto('/en');
   await page.getByRole('button', { name: /language/i }).click();
