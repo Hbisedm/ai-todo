@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { deleteTodoAction } from '@/features/todos/actions/delete-todo';
 import { updateTodoAction } from '@/features/todos/actions/update-todo';
+import { getNextTodoStatus } from '@/features/todos/status-flow';
 import type { AppLocale } from '@/i18n/routing';
 
 type Todo = {
@@ -13,15 +14,10 @@ type Todo = {
   dueDate: Date | string | null;
 };
 
-const nextStatus: Record<string, 'todo' | 'in_progress' | 'done'> = {
-  TODO: 'in_progress',
-  IN_PROGRESS: 'done',
-  DONE: 'todo'
-};
-
 export function TodoCard({ todo, locale, returnTo }: { todo: Todo; locale: AppLocale; returnTo: string }) {
   const t = useTranslations('todos.card');
   const dueDate = todo.dueDate ? new Date(todo.dueDate) : null;
+  const nextStatus = getNextTodoStatus(todo.status);
 
   return (
     <article className="todo-card">
@@ -38,13 +34,15 @@ export function TodoCard({ todo, locale, returnTo }: { todo: Todo; locale: AppLo
       <div className="todo-card__bottom">
         <span>{dueDate ? `${t('due')} ${dueDate.toLocaleDateString()}` : t('noDueDate')}</span>
         <div className="todo-actions">
-          <form action={updateTodoAction}>
-            <input name="id" type="hidden" value={todo.id} />
-            <input name="status" type="hidden" value={nextStatus[todo.status] ?? 'todo'} />
-            <input name="locale" type="hidden" value={locale} />
-            <input name="returnTo" type="hidden" value={returnTo} />
-            <button type="submit">{t('advanceStatus')}</button>
-          </form>
+          {nextStatus ? (
+            <form action={updateTodoAction}>
+              <input name="id" type="hidden" value={todo.id} />
+              <input name="status" type="hidden" value={nextStatus} />
+              <input name="locale" type="hidden" value={locale} />
+              <input name="returnTo" type="hidden" value={returnTo} />
+              <button type="submit">{t('advanceStatus')}</button>
+            </form>
+          ) : null}
           <form action={deleteTodoAction}>
             <input name="id" type="hidden" value={todo.id} />
             <input name="locale" type="hidden" value={locale} />
