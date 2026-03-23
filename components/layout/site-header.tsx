@@ -25,12 +25,16 @@ export function SiteHeader({
         {appName}
       </Link>
       <nav aria-label="Primary" className="site-nav">
-        <LocaleSwitcher label={languageLabel} />
-        <ThemeSwitcher label={themeLabel} />
-        <Link href={`/${locale}/login`}>{loginLabel}</Link>
-        <Link className="cta-link" href={`/${locale}/register`}>
-          {getStartedLabel}
-        </Link>
+        <div className="site-nav__controls">
+          <LocaleSwitcher label={languageLabel} />
+          <ThemeSwitcher label={themeLabel} />
+        </div>
+        <div className="site-nav__actions">
+          <Link className="site-link" href={`/${locale}/login`}>{loginLabel}</Link>
+          <Link className="cta-link" href={`/${locale}/register`}>
+            {getStartedLabel}
+          </Link>
+        </div>
       </nav>
     </header>
   );
