@@ -160,7 +160,6 @@
       "noDescription": "暂无描述",
       "noDueDate": "没有截止日期",
       "due": "截止",
-      "advanceStatus": "推进状态",
       "delete": "删除",
       "status": {
         "TODO": "待办",
@@ -171,6 +170,10 @@
         "LOW": "低",
         "MEDIUM": "中",
         "HIGH": "高"
+      },
+      "actions": {
+        "start": "开始处理",
+        "markDone": "标记完成"
       }
     },
     "empty": {

@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { deleteTodoAction } from '@/features/todos/actions/delete-todo';
 import { updateTodoAction } from '@/features/todos/actions/update-todo';
-import { getNextTodoStatus } from '@/features/todos/status-flow';
+import { getNextTodoStatus, getTodoAdvanceActionKey } from '@/features/todos/status-flow';
 import type { AppLocale } from '@/i18n/routing';
 
 type Todo = {
@@ -18,6 +18,7 @@ export function TodoCard({ todo, locale, returnTo }: { todo: Todo; locale: AppLo
   const t = useTranslations('todos.card');
   const dueDate = todo.dueDate ? new Date(todo.dueDate) : null;
   const nextStatus = getNextTodoStatus(todo.status);
+  const actionKey = getTodoAdvanceActionKey(todo.status);
 
   return (
     <article className="todo-card">
@@ -34,13 +35,13 @@ export function TodoCard({ todo, locale, returnTo }: { todo: Todo; locale: AppLo
       <div className="todo-card__bottom">
         <span>{dueDate ? `${t('due')} ${dueDate.toLocaleDateString()}` : t('noDueDate')}</span>
         <div className="todo-actions">
-          {nextStatus ? (
+          {nextStatus && actionKey ? (
             <form action={updateTodoAction}>
               <input name="id" type="hidden" value={todo.id} />
               <input name="status" type="hidden" value={nextStatus} />
               <input name="locale" type="hidden" value={locale} />
               <input name="returnTo" type="hidden" value={returnTo} />
-              <button type="submit">{t('advanceStatus')}</button>
+              <button type="submit">{t(`actions.${actionKey}`)}</button>
             </form>
           ) : null}
           <form action={deleteTodoAction}>
