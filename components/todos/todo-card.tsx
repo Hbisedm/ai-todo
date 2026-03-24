@@ -25,7 +25,7 @@ export function TodoCard({ todo, locale, returnTo }: { todo: Todo; locale: AppLo
   return (
     <article className="todo-card">
       <div className="todo-card__top">
-        <div>
+        <div className="todo-card__content">
           <h3>{todo.title}</h3>
           {todo.description ? <p>{todo.description}</p> : <p className="muted">{t('noDescription')}</p>}
         </div>

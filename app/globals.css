@@ -7,6 +7,7 @@
   --card-border: rgba(148, 163, 184, 0.28);
   --accent: linear-gradient(135deg, #2563eb, #7c3aed);
   --ghost: rgba(15, 23, 42, 0.04);
+  --button-foreground: #f8fafc;
   --surface-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
   --surface-shadow-strong: 0 32px 100px rgba(15, 23, 42, 0.16);
   --section-width: 1180px;
@@ -21,6 +22,7 @@ html.dark {
   --card-border: rgba(148, 163, 184, 0.18);
   --accent: linear-gradient(135deg, #3b82f6, #8b5cf6);
   --ghost: rgba(255, 255, 255, 0.05);
+  --button-foreground: #f8fafc;
   --surface-shadow: 0 24px 80px rgba(2, 6, 23, 0.34);
   --surface-shadow-strong: 0 34px 100px rgba(2, 6, 23, 0.42);
 }
@@ -576,7 +578,13 @@ h2 {
   border: 1px solid var(--card-border);
   padding: 0.85rem 1rem;
   font: inherit;
+  color: var(--button-foreground);
   cursor: pointer;
+}
+
+.todo-form button span,
+.todo-actions button span {
+  color: inherit;
 }
 
 button:disabled {
@@ -606,7 +614,22 @@ button:disabled {
   margin: 0 0 0.25rem;
 }
 
-.todo-card__top,
+.todo-card__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 1rem;
+}
+
+.todo-card__content {
+  min-width: 0;
+}
+
+.todo-card__content h3,
+.todo-card__content p {
+  overflow-wrap: anywhere;
+}
+
 .todo-card__bottom,
 .todo-meta,
 .todo-actions {
@@ -615,9 +638,20 @@ button:disabled {
   gap: 1rem;
 }
 
-.todo-meta,
+.todo-meta {
+  flex-shrink: 0;
+  align-self: start;
+  justify-content: flex-end;
+}
+
 .todo-actions {
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.todo-actions form {
+  flex: 0 0 auto;
+  min-width: 8.75rem;
 }
 
 .badge {
