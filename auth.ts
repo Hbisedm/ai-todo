@@ -4,10 +4,16 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { db } from '@/lib/db';
 
+const TEN_DAYS_IN_SECONDS = 60 * 60 * 24 * 10;
+
 export const authOptions: NextAuthOptions = {
   secret: process.env.AUTH_SECRET,
   session: {
-    strategy: 'jwt'
+    strategy: 'jwt',
+    maxAge: TEN_DAYS_IN_SECONDS
+  },
+  jwt: {
+    maxAge: TEN_DAYS_IN_SECONDS
   },
   pages: {
     signIn: '/login'

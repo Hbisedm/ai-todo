@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 
 import { authOptions } from '@/auth';
+import { LogoutButton } from '@/components/auth/logout-button';
 import { FilterBar } from '@/components/todos/filter-bar';
 import { StatsCards } from '@/components/todos/stats-cards';
 import { TodoFormDialog } from '@/components/todos/todo-form-dialog';
@@ -36,13 +37,15 @@ export default async function AppPage({
 }) {
   const { locale } = await params;
   const session = await getServerSession(authOptions);
-  const userId = (session?.user as { id?: string } | undefined)?.id;
+  const user = session?.user as { id?: string; email?: string | null; name?: string | null } | undefined;
+  const userId = user?.id;
 
   if (!userId) {
     redirect(`/${locale}/login`);
   }
 
   const dashboardT = await getTranslations('dashboard');
+  const navigationT = await getTranslations('common.navigation');
   const todoErrorT = await getTranslations('todos.errors');
   const rawSearchParams = await searchParams;
   const filters = todoFilterSchema.parse({
@@ -55,14 +58,23 @@ export default async function AppPage({
     ? todoErrorT(todoErrorCode as never)
     : null;
   const { todos, stats } = await getDashboardData(userId, filters);
+  const userLabel = user?.name || user?.email || 'User';
 
   return (
     <main className="dashboard-page">
       <section className="dashboard-hero">
-        <div>
-          <p className="eyebrow">{dashboardT('eyebrow')}</p>
-          <h1>{dashboardT('title')}</h1>
-          <p className="muted">{dashboardT('subtitle')}</p>
+        <div className="dashboard-hero__topbar">
+          <div>
+            <p className="eyebrow">{dashboardT('eyebrow')}</p>
+            <h1>{dashboardT('title')}</h1>
+            <p className="muted">{dashboardT('subtitle')}</p>
+          </div>
+          <LogoutButton
+            label={navigationT('logout')}
+            locale={locale}
+            pendingLabel={navigationT('logoutPending')}
+            userLabel={userLabel}
+          />
         </div>
       </section>
       {todoErrorMessage ? <p className="page-error-banner">{todoErrorMessage}</p> : null}

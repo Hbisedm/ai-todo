@@ -5,7 +5,9 @@
       "login": "Log in",
       "getStarted": "Get started",
       "language": "Language",
-      "theme": "Theme"
+      "theme": "Theme",
+      "logout": "Log out",
+      "logoutPending": "Logging out..."
     }
   },
   "marketing": {

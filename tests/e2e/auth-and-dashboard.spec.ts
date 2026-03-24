@@ -31,3 +31,13 @@ test('dashboard keeps a roomy two-column layout on desktop', async ({ page }) =>
   expect(formWidth).toBeGreaterThanOrEqual(380);
   await expect(page.getByRole('heading', { name: /添加真正重要的事情/i })).toBeVisible();
 });
+
+test('signed-in user can log out from the dashboard', async ({ page }) => {
+  await page.goto('/en/login');
+  await page.getByLabel(/email/i).fill('demo@todoweb.dev');
+  await page.getByLabel(/password/i).fill('password123');
+  await page.getByRole('button', { name: /log in/i }).click();
+  await expect(page).toHaveURL(/\/en\/app/);
+  await page.getByRole('button', { name: /log out/i }).click();
+  await expect(page).toHaveURL(/\/en\/login/);
+});
