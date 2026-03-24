@@ -4,6 +4,8 @@ import { FormEvent, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useLocale, useTranslations } from 'next-intl';
 
+import { LoadingSpinner } from '@/components/ui/loading-spinner';
+
 export function RegisterForm() {
   const locale = useLocale();
   const t = useTranslations('auth.register');
@@ -61,22 +63,25 @@ export function RegisterForm() {
       <p>{t('subtitle')}</p>
       <label>
         <span>{t('fields.name')}</span>
-        <input aria-label={t('fields.name')} name="name" required minLength={2} />
+        <input aria-label={t('fields.name')} minLength={2} name="name" required />
       </label>
       <label>
         <span>{t('fields.email')}</span>
-        <input aria-label={t('fields.email')} name="email" type="email" required />
+        <input aria-label={t('fields.email')} name="email" required type="email" />
       </label>
       <label>
         <span>{t('fields.password')}</span>
-        <input aria-label={t('fields.password')} name="password" type="password" required minLength={8} />
+        <input aria-label={t('fields.password')} minLength={8} name="password" required type="password" />
       </label>
       <label>
         <span>{t('fields.confirmPassword')}</span>
-        <input aria-label={t('fields.confirmPassword')} name="confirmPassword" type="password" required minLength={8} />
+        <input aria-label={t('fields.confirmPassword')} minLength={8} name="confirmPassword" required type="password" />
       </label>
       {errorMessage ? <p className="form-error">{errorMessage}</p> : null}
-      <button type="submit" disabled={isPending}>{isPending ? t('actions.pending') : t('actions.submit')}</button>
+      <button disabled={isPending} type="submit">
+        {isPending ? <LoadingSpinner /> : null}
+        <span>{isPending ? t('actions.pending') : t('actions.submit')}</span>
+      </button>
     </form>
   );
 }

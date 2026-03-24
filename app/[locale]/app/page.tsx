@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 
 import { authOptions } from '@/auth';
-import { LogoutButton } from '@/components/auth/logout-button';
+import { AccountMenu } from '@/components/auth/account-menu';
 import { FilterBar } from '@/components/todos/filter-bar';
 import { StatsCards } from '@/components/todos/stats-cards';
 import { TodoFormDialog } from '@/components/todos/todo-form-dialog';
@@ -54,9 +54,10 @@ export default async function AppPage({
   });
   const returnTo = buildReturnTo(locale, filters);
   const todoErrorCode = typeof rawSearchParams.todoError === 'string' ? rawSearchParams.todoError : undefined;
-  const todoErrorMessage = todoErrorCode && TODO_ERROR_CODE_VALUES.includes(todoErrorCode as never)
-    ? todoErrorT(todoErrorCode as never)
-    : null;
+  const todoErrorMessage =
+    todoErrorCode && TODO_ERROR_CODE_VALUES.includes(todoErrorCode as never)
+      ? todoErrorT(todoErrorCode as never)
+      : null;
   const { todos, stats } = await getDashboardData(userId, filters);
   const userLabel = user?.name || user?.email || 'User';
 
@@ -69,10 +70,10 @@ export default async function AppPage({
             <h1>{dashboardT('title')}</h1>
             <p className="muted">{dashboardT('subtitle')}</p>
           </div>
-          <LogoutButton
-            label={navigationT('logout')}
+          <AccountMenu
             locale={locale}
-            pendingLabel={navigationT('logoutPending')}
+            logoutLabel={navigationT('logout')}
+            logoutPendingLabel={navigationT('logoutPending')}
             userLabel={userLabel}
           />
         </div>

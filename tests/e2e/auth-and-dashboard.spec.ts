@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test('english landing page shows translated marketing copy', async ({ page }) => {
   await page.goto('/en');
@@ -32,12 +32,28 @@ test('dashboard keeps a roomy two-column layout on desktop', async ({ page }) =>
   await expect(page.getByRole('heading', { name: /添加真正重要的事情/i })).toBeVisible();
 });
 
-test('signed-in user can log out from the dashboard', async ({ page }) => {
+test('signed-in users visiting root land on their localized dashboard', async ({ page }) => {
   await page.goto('/en/login');
   await page.getByLabel(/email/i).fill('demo@todoweb.dev');
   await page.getByLabel(/password/i).fill('password123');
   await page.getByRole('button', { name: /log in/i }).click();
   await expect(page).toHaveURL(/\/en\/app/);
-  await page.getByRole('button', { name: /log out/i }).click();
+
+  await page.goto('/');
+
+  await expect(page).toHaveURL(/\/en\/app/);
+});
+
+test('signed-in user can log out from the account menu', async ({ page }) => {
+  await page.goto('/en/login');
+  await page.getByLabel(/email/i).fill('demo@todoweb.dev');
+  await page.getByLabel(/password/i).fill('password123');
+  await page.getByRole('button', { name: /log in/i }).click();
+  await expect(page).toHaveURL(/\/en\/app/);
+
+  await page.getByRole('button', { name: /demo user/i }).click();
+  await expect(page.getByRole('menuitem', { name: /log out/i })).toBeVisible();
+  await page.getByRole('menuitem', { name: /log out/i }).click();
+
   await expect(page).toHaveURL(/\/en\/login/);
 });

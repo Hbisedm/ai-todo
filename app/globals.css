@@ -177,6 +177,10 @@ h2 {
   font-weight: 700;
 }
 
+.auth-card button {
+  gap: 0.55rem;
+}
+
 .marketing-main {
   width: min(100%, var(--section-width));
   margin: 0 auto;
@@ -359,6 +363,22 @@ h2 {
   padding: 1rem 1.25rem;
 }
 
+.loading-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 999px;
+  flex-shrink: 0;
+  animation: spinner-rotate 0.7s linear infinite;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .switcher-menu {
   position: relative;
 }
@@ -379,6 +399,10 @@ h2 {
 }
 
 .menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.55rem;
   border-radius: 0.85rem;
   padding: 0.7rem 0.85rem;
   text-align: left;
@@ -403,6 +427,45 @@ h2 {
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
+}
+
+.account-menu {
+  min-width: min(100%, 16rem);
+}
+
+.account-menu__trigger {
+  width: 100%;
+  min-width: 15rem;
+  justify-content: space-between;
+  padding-inline: 1rem 0.9rem;
+}
+
+.account-menu__trigger::after {
+  content: '▾';
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.account-menu__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-menu__popover {
+  min-width: 14rem;
+  padding: 0.65rem;
+}
+
+.account-menu__identity {
+  padding: 0.25rem 0.35rem 0.55rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  word-break: break-word;
+}
+
+.account-menu__logout {
+  width: 100%;
 }
 
 .dashboard-account {
@@ -504,12 +567,22 @@ h2 {
 
 .todo-form button,
 .todo-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
   width: 100%;
   border-radius: 0.95rem;
   border: 1px solid var(--card-border);
   padding: 0.85rem 1rem;
   font: inherit;
   cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.78;
+  transform: none;
 }
 
 .todo-form__row {
@@ -598,6 +671,14 @@ h2 {
   .dashboard-hero__topbar {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .account-menu,
+  .account-menu__trigger,
+  .account-menu__popover,
+  .dashboard-account {
+    width: 100%;
+    min-width: 0;
   }
 
   .dashboard-account {

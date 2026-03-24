@@ -12,6 +12,10 @@ const intlMiddleware = createMiddleware({
 });
 
 export default async function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname === '/') {
+    return NextResponse.next();
+  }
+
   const response = intlMiddleware(request);
   const [, locale, section] = request.nextUrl.pathname.split('/');
 

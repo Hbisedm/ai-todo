@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 
+import { FormPendingButton } from '@/components/forms/form-pending-button';
 import { deleteTodoAction } from '@/features/todos/actions/delete-todo';
 import { updateTodoAction } from '@/features/todos/actions/update-todo';
 import { getNextTodoStatus, getTodoAdvanceActionKey } from '@/features/todos/status-flow';
@@ -19,6 +20,7 @@ export function TodoCard({ todo, locale, returnTo }: { todo: Todo; locale: AppLo
   const dueDate = todo.dueDate ? new Date(todo.dueDate) : null;
   const nextStatus = getNextTodoStatus(todo.status);
   const actionKey = getTodoAdvanceActionKey(todo.status);
+  const advancePendingLabel = actionKey ? t(`actions.${actionKey}Pending`) : '';
 
   return (
     <article className="todo-card">
@@ -41,14 +43,14 @@ export function TodoCard({ todo, locale, returnTo }: { todo: Todo; locale: AppLo
               <input name="status" type="hidden" value={nextStatus} />
               <input name="locale" type="hidden" value={locale} />
               <input name="returnTo" type="hidden" value={returnTo} />
-              <button type="submit">{t(`actions.${actionKey}`)}</button>
+              <FormPendingButton idleLabel={t(`actions.${actionKey}`)} pendingLabel={advancePendingLabel} />
             </form>
           ) : null}
           <form action={deleteTodoAction}>
             <input name="id" type="hidden" value={todo.id} />
             <input name="locale" type="hidden" value={locale} />
             <input name="returnTo" type="hidden" value={returnTo} />
-            <button className="danger-button" type="submit">{t('delete')}</button>
+            <FormPendingButton idleLabel={t('delete')} pendingLabel={t('deletePending')} variant="danger" />
           </form>
         </div>
       </div>

@@ -156,7 +156,8 @@
         "medium": "中",
         "high": "高"
       },
-      "submit": "创建任务"
+      "submit": "创建任务",
+      "submitPending": "创建中..."
     },
     "card": {
       "noDescription": "暂无描述",
@@ -175,8 +176,11 @@
       },
       "actions": {
         "start": "开始处理",
-        "markDone": "标记完成"
-      }
+        "markDone": "标记完成",
+        "startPending": "处理中...",
+        "markDonePending": "完成中..."
+      },
+      "deletePending": "删除中..."
     },
     "empty": {
       "title": "还没有任务",

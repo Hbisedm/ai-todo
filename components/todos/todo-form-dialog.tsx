@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 
+import { FormPendingButton } from '@/components/forms/form-pending-button';
 import { createTodoAction } from '@/features/todos/actions/create-todo';
 import type { AppLocale } from '@/i18n/routing';
 
@@ -37,7 +38,7 @@ export function TodoFormDialog({ locale, returnTo }: { locale: AppLocale; return
             <input name="dueDate" type="date" />
           </label>
         </div>
-        <button type="submit">{t('submit')}</button>
+        <FormPendingButton idleLabel={t('submit')} pendingLabel={t('submitPending')} />
       </form>
     </section>
   );

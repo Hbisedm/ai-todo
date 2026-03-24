@@ -156,7 +156,8 @@
         "medium": "Medium",
         "high": "High"
       },
-      "submit": "Create task"
+      "submit": "Create task",
+      "submitPending": "Creating..."
     },
     "card": {
       "noDescription": "No description",
@@ -175,8 +176,11 @@
       },
       "actions": {
         "start": "Start",
-        "markDone": "Mark done"
-      }
+        "markDone": "Mark done",
+        "startPending": "Starting...",
+        "markDonePending": "Finishing..."
+      },
+      "deletePending": "Deleting..."
     },
     "empty": {
       "title": "No tasks yet",
